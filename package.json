@@ -4,7 +4,8 @@
   "description": "To-do list using Postgres",
   "main": "server/start.js",
   "scripts": {
-    "start": "nodemon --watch server -e js,html server/start.js"
+    "start": "nodemon --watch server -e js,html server/start.js",
+    "postinstall": "node server/db/index.js"
   },
   "dependencies": {
     "babel": "^6.0.15",
@@ -15,7 +16,8 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.0",
     "lodash": "^3.10.1",
-    "nodemon": "^1.8.1"
+    "nodemon": "^1.8.1",
+    "pg": "^4.4.3"
   },
   "devDependencies": {
     "babel-core": "^6.1.2",
