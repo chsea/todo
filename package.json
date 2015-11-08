@@ -8,6 +8,7 @@
     "postinstall": "node server/db/index.js"
   },
   "dependencies": {
+    "angular": "^1.4.7",
     "babel": "^6.0.15",
     "babel-core": "^6.1.2",
     "body-parser": "^1.14.1",
@@ -15,12 +16,16 @@
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
     "lodash": "^3.10.1",
+    "ni": "0.0.2",
     "nodemon": "^1.8.1",
-    "pg": "^4.4.3"
-  },
-  "devDependencies": {
-    "babel-core": "^6.1.2",
-    "gulp-babel": "^6.1.0"
+    "pg": "^4.4.3",
+    "run-sequence": "^1.1.4"
   }
 }

@@ -17,6 +17,8 @@ app.use((req, res, next) => {
     next();
 });
 
+require('./routes/statics')(app);
+
 app.use('/api', require('./routes'));
 
 const indexPath = path.join(__dirname, './index.html');
