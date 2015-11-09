@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "angular": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
     "babel": "^6.0.15",
     "babel-core": "^6.1.2",
     "body-parser": "^1.14.1",
@@ -26,6 +27,8 @@
     "ni": "0.0.2",
     "nodemon": "^1.8.1",
     "pg": "^4.4.3",
-    "run-sequence": "^1.1.4"
+    "pg-hstore": "^2.3.2",
+    "run-sequence": "^1.1.4",
+    "sequelize": "^3.13.0"
   }
 }
