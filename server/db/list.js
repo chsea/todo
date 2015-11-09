@@ -2,7 +2,9 @@
 const Sequelize = require('sequalize');
 
 module.exports = db => {
-  return db.define('List', {
+  const List = db.define('List', {
     name: { type: Sequelize.STRING },
   });
+
+  return List;
 };
