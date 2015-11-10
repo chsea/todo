@@ -23,6 +23,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
+    "js-data": "^2.8.2",
+    "js-data-angular": "^3.1.0",
     "lodash": "^3.10.1",
     "ni": "0.0.2",
     "nodemon": "^1.8.1",
