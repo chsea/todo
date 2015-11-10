@@ -1,12 +1,15 @@
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/style.css" />
-  <script src="/lodash/index.js"></script>
-  <script src="/angular/angular.js"></script>
-  <script src="/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="/main.js"></script>
-</head>
-<body ng-app="Todo">
-  <p>Hi!
-</body>
+  <head>
+    <base href="/" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src="/lodash/index.js"></script>
+    <script src="/angular/angular.min.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/js-data/dist/js-data.min.js"></script>
+    <script src="/js-data-angular/dist/js-data-angular.min.js"></script>
+    <script src="/main.js"></script>
+  </head>
+  <body ng-app="Todo">
+    <div id="main" ui-view></div>
+  </body>
 </html>
