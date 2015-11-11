@@ -20,6 +20,7 @@ app.use((req, res, next) => {
 });
 
 require('./routes/statics')(app);
+require('./routes/authentication')(app);
 
 app.use('/api', require('./routes'));
 

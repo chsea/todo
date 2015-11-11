@@ -17,7 +17,12 @@ module.exports = db => {
     salt: { type: Sequelize.STRING },
     password: { type: Sequelize.STRING }
   }, {
-    timestamps: false
+    timestamps: false,
+    instanceMethods: {
+      verifyPassword: function(password) {
+        return hashPassword(password, this.salt) === this.password;
+      }
+    }
   });
 
   User.beforeCreate(user => {
