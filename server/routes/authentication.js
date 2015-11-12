@@ -20,11 +20,22 @@ module.exports = app => {
     }).then(null, done);
   }));
 
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failuareFlash: true
-  }));
+  app.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) return next(err);
+
+      if (!user) {
+        let error = new Error('Invalid login credentials.');
+        error.status = 401;
+        return next(error);
+      }
+
+      req.logIn(user, err => {
+        if (err) return next(err);
+        res.send(_.omit(user.toJSON(), ['password', 'salt']));
+      });
+    });
+  });
 
   app.get('/session', (req, res) => {
     if (req.user) res.json(_.omit(req.user, ['password', 'salt']));
