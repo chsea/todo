@@ -2,10 +2,12 @@
 const chalk = require('chalk');
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
 const util = require('util');
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -18,6 +20,7 @@ app.use((req, res, next) => {
 });
 
 require('./routes/statics')(app);
+require('./routes/authentication')(app);
 
 app.use('/api', require('./routes'));
 
