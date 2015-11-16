@@ -1,22 +1,29 @@
 const _ = require('lodash');
 const session = require('express-session');
 const passport = require('passport');
-const User = require('../db/user.js');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('../db').User;
 
 const SESSION_SECRET = process.env.SESSION_SECRET || 'kobe24';
 
 module.exports = app => {
-  app.use(session({ secret: SESSION_SECRET }));
+  app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
 
   passport.serializeUser((user, done) => done(null, user.id));
-  passport.deserializeUser((id, done) => User.findById(id, done));
+  passport.deserializeUser((id, done) => User.findById(id).then(user => {
+    done(null, user.get({ plain: true }));
+  }));
 
   passport.use(new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }).then((user) => {
+    User.findOne({ where: { username: username } }).then(user => {
       if (!user || !user.verifyPassword(password)) done(null, false);
-      else done(null, user);
+      else done(null, user.get({ plain: true }));
     }).then(null, done);
   }));
 
@@ -32,13 +39,13 @@ module.exports = app => {
 
       req.logIn(user, err => {
         if (err) return next(err);
-        res.send(_.omit(user.toJSON(), ['password', 'salt']));
+        res.send(_.omit(user, ['password', 'salt']));
       });
-    });
+    })(req, res, next);
   });
 
   app.get('/session', (req, res) => {
-    if (req.user) res.json(_.omit(req.user, ['password', 'salt']));
+    if (req.user) res.send(_.omit(req.user, ['password', 'salt']));
     else res.status(401).send('No authenticated user.');
   });
 
