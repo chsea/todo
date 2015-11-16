@@ -39,13 +39,13 @@ module.exports = app => {
 
       req.logIn(user, err => {
         if (err) return next(err);
-        res.send(_.omit(user, ['password', 'salt']));
+        res.send({user: _.omit(user, 'salt', 'password')});
       });
     })(req, res, next);
   });
 
   app.get('/session', (req, res) => {
-    if (req.user) res.send(_.omit(req.user, ['password', 'salt']));
+    if (req.user) res.send({user: _.omit(req.user, 'salt', 'password')});
     else res.status(401).send('No authenticated user.');
   });
 

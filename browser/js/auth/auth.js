@@ -7,7 +7,7 @@ app.service('Session', function() {
 
 app.service('AuthService', function(Session, $http, $rootScope) {
   let logIn = res => {
-    let user = res.data;
+    let user = res.data.user;
     Session.create(user);
     $rootScope.$broadcast('login');
     return user;

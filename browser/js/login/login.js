@@ -11,6 +11,7 @@ app.config($stateProvider => {
   $scope.newUser = {};
   $scope.signUp = () => {
     User.create($scope.newUser)
-      .then(user => alert(`${user.name} created!`));
+      .then(user => AuthService.login({username: user.username, password: $scope.newUser.password}))
+      .then(user => console.log(user));
   };
 });
